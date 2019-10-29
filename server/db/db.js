@@ -1,79 +1,31 @@
-export class db{
-    constructor(){
+import MongoDB from "mongodb";
 
+export class db {
+    constructor() {
+        this.uri = process.env.MONGODB_URI  //"mongodb+srv://admin:qwerty123456789@react-vptyr.mongodb.net/test?retryWrites=true&w=majority";
+        this.client = MongoDB.MongoClient(this.uri, {useNewUrlParser: true, useUnifiedTopology: true});
+        this.dbName = "shop";
+        this.dbConnection = this.client.connect();
     }
 
-    getItems() {
-        return items;
+    async getAll(collection) {
+        return this.dbConnection.then(client => {
+            const db = client.db(this.dbName)
+            return db
+                .collection(collection)
+                .find({})
+                .toArray();
+        });
     }
 
-    getItemsById(id) {
-        return items.find((item) => {
-            return item.id === id;
-        })
+    async getById(collection, id) {
+        return this.dbConnection.then(client => {
+            const db = client.db(this.dbName)
+            return db
+                .collection(collection)
+                .find({"id": id})
+                .toArray();
+        });
     }
 };
 
-const items = [
-    {
-        id: "1",
-        name: "Reebok Track Jacket",
-        bundleInfo: {},
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-        price: "100$",
-        sizes: ["S", "M", "L"],
-        colors: ["#4287f5", "#f54242", "#400a2d"],
-        images: ["https://i.imgur.com/mt7NO4o.png"],
-        sale: {},
-        rating: "5",
-        categories: [],
-        brand: "",
-        creationDate: new Date("Tue Oct 22 2019"),
-    },
-    {
-        id: "2",
-        name: "Reebok Track Jacket",
-        bundleInfo: {},
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-        price: "100$",
-        sizes: ["S", "M", "L"],
-        colors: ["#4287f5", "#f54242", "#400a2d"],
-        images: ["https://i.imgur.com/w5WzErc.png"],
-        sale: {},
-        rating: "5",
-        categories: [],
-        brand: "",
-        creationDate: new Date("Tue Oct 22 2019"),
-    },
-    {
-        id: "3",
-        name: "Reebok Track Jacket",
-        bundleInfo: {},
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-        price: "100$",
-        sizes: ["S", "M", "L"],
-        colors: ["#4287f5", "#f54242", "#400a2d"],
-        images: ["https://i.imgur.com/4Q9MQg4.png"],
-        sale: {},
-        rating: "5",
-        categories: [],
-        brand: "",
-        creationDate: new Date("Tue Oct 22 2019"),
-    },
-    {
-        id: "4",
-        name: "Reebok Track Jacket",
-        bundleInfo: {},
-        description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry",
-        price: "100$",
-        sizes: ["S", "M", "L"],
-        colors: ["#4287f5", "#f54242", "#400a2d"],
-        images: ["https://i.imgur.com/wXSAlap.png"],
-        sale: {},
-        rating: "5",
-        categories: [],
-        brand: "",
-        creationDate: new Date("Tue Oct 22 2019"),
-    },
-
-];

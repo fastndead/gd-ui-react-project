@@ -1,7 +1,15 @@
-import {getItems} from "../../services/itemsService"
+import {db} from "../../db/db"
+
+const dbInstance = new db();
 
 export default (req, res) => {
-
-    res.statusCode = 200;
-    res.end(JSON.stringify(getItems()));
+    dbInstance.getAll("items")
+        .then(result => {
+            res.statusCode = 200;
+            res.json(JSON.stringify(result));
+        })
+        .catch(err => {
+            res.statusCode = 500;
+            res.json(JSON.stringify(err));
+        })
 }
