@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700&display=swap');
+
+.Newsletter {
+  height: 123px;
+  max-width: 1270px;
+  width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
+  background-color: white;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  font-family: 'Open Sans', sans-serif;
+
+  &__text {
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
+    align-items: center;
+    white-space: nowrap;
+  }
+
+  &__header {
+    padding-right: 20px;
+    color: #ff5912;
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+  }
+
+  &__paragraph {
+    font-size: 14px;
+    font-style: italic;
+  }
+}
+
+.Form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &_newsletter {
+    flex-basis: 35%;
+  }
+
+  &__icon {
+    width: 18px;
+    height: 11px;
+    padding-right: 10px;
+  }
+
+  &__input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    font-style: italic;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  &__button {
+    width: 100px;
+    height: 50px;
+    background-color: #ff5912;
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+  }
+}
+
+
+
